@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<title>Test</title>
+		<meta charset="utf-8" />
+		{% load staticfiles %}
+		<link rel='stylesheet' href="{% static 'personal/css/bootstrap.min.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'page_css/style.css'%}">
+		
+		<!-- Script to prevent the browser to go back after submitting the paper -->
+		<script language="javascript">
+			function disableBackButton(){
+				window.history.forward()
+			}
+			disableBackButton();
+			window.onload=disableBackButton();
+			window.onpageshow=function(evt){
+				if(evt.persisted)disableBackButton()
+			}
+		window.onunload=function(){
+			void(0)
+		}
+		</script>
+		<!-- End of the script -->
+
+	</head>
+	<body onload="javascript:window.history.forward(1);">
+		<div class="container" style="position: fixed; z-index: 1000 ;background-color: yellow">
+			<p id="timer"></p>
+
+				
+				<script>
+
+				// Set the date we're counting down to
+				var countDownDate = new Date().getTime()+{{tm}};
+
+				// Update the count down every 1 second
+				var x = setInterval(function() {
+
+				    //  todays date and time
+				    var now = new Date().getTime();
+				    
+				    //  distance between now an the count down date
+				    var distance = countDownDate - now;
+				    
+				    // time calculations for minutes and seconds
+				   
+				    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+				    
+				    // show karo time left
+				    document.getElementById("timer").innerHTML = "Time Left : "+minutes + "m " + seconds + "s ";
+				    
+				    // If the count down is over, end the test 
+				    if (distance < 0) {
+				        clearInterval(x);
+				 	document.getElementById("timer").innerHTML = "Time Over";
+				        document.getElementById("rd").submit();
+				        //iframe ko move kardo
+				    }
+				}, 1000);
+			</script>
+		</div>
+
+		<br>
+		{% load po_extras %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-warning">
+							<div class="panel-heading">Paper-Code : {{testcode}}</div>
+							<div class="panel-body" class="container"><div class="col-md-9">NAME : <u>{{name}}</u></div> <div class="col-md-3"> ROLL NUMBER : <u>{{roll_no}}</u></div></div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form action="/submitt" class="" id="rd" method="POST">{% csrf_token %}
+			<div class="form-group ">
+
+			{% for i in quesn %}
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel-group">
+								<div class="panel panel-warning">
+									<div class="panel-heading">Question Number :{{ qno|lookup:i }} </div>
+									<div class="panel-body" class="container">
+										<h4><b>QUESTION : </b>{% with lookup_result=ques|lookup:i %}{{lookup_result.1}}</h4>
+										<h4><b>OPTIONS:</b></h4>
+										<div class="radio">
+											<label><input type="radio" name="{{lookup_result.0}}" id="{{lookup_result.0}}" value="{{lookup_result.2}}">{{lookup_result.2}}</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="{{lookup_result.0}}" id="{{lookup_result.0}}" value="{{lookup_result.3}}">{{lookup_result.3}}</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="{{lookup_result.0}}" id="{{lookup_result.0}}" value="{{lookup_result.4}}">{{lookup_result.4}}</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="{{lookup_result.0}}" id="{{lookup_result.0}}" value="{{lookup_result.5}}">{{lookup_result.5}}</label>
+										</div>
+
+										 {% endwith %}  
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<div style="text-align: center;">
+					<button type="submit" class="btn  btn-primary" name="start" id="start">Submit Paper</button>
+				</div>
+			</div>
+		</form>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

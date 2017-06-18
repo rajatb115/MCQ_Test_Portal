@@ -1,0 +1,22 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+
+	<form action="/reviewpaper2" class="" method="POST">{% csrf_token %}
+		<div class="form-group ">
+			<label for="sel1">Please Select the paper code you want review :</label>
+  			<select class="form-control"  id="sel1" name="sel1">
+  			{% for o in p %}
+    		<option value="{{o.test_id}}">{{o.test_id}}</option>
+    		{% endfor %}
+  			</select>
+		</div>
+
+		<div class="form-group ">
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="startas" id="startas" style="width: 150px"> Review </button>
+			</div>
+		</div>
+	</form>
+
+{% endblock %}

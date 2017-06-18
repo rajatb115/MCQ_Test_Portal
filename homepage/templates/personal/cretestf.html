@@ -1,0 +1,43 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<form action="/cretestf" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="testdet" class="cols-sm-2 control-label">Question number : {{quesno}}</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Question {{quesno}}</span>
+					<!-- <input type="text" rows="4" class="form-control" name="question" id="question"  placeholder="Question" required/> -->
+					<textarea class="form-control" rows="5" name="question" id="question" placeholder="Question?" required></textarea>
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 1</span>
+					<input type="text" class="form-control" name="op1" id="op1"  placeholder="Option 1" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 2</span>
+					<input type="text" class="form-control" name="op2" id="op2"  placeholder="Option 2" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 3</span>
+					<input type="text" class="form-control" name="op3" id="op3"  placeholder="Option 3" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 4</span>
+					<input type="text" class="form-control" name="op4" id="op4"  placeholder="Option 4" required/>
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Solution</span>
+					<input type="number" class="form-control" name="ans" id="ans" min="1" max="4" placeholder="Enter Right Solution Number(Example enter 1 if Option 1 is correct)" required/>
+				</div>
+			</div>
+		</div>
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">{% ifequal maxq quesno %} Submit {% endifequal %} {% ifnotequal maxq quesno  %}Next Question{% endifnotequal %}</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+ <div class="container">
+	<h4>Test Code : {{tid}}</h4>
+</div>
+
+<form action="/prevedittest" class="" method="POST">{% csrf_token %}
+	<div class="form-group ">				
+		<div style="text-align: center;">
+			<button type="submit" class="btn  btn-primary" name="start1" id="start1" style="width: 250px">resume from previous</button>
+		</div>
+	</div>
+</form>
+
+<form action="/perticularedittest" class="" method="POST">{% csrf_token %}
+	<div class="form-group ">
+		<div style="text-align: center;">
+			<button type="submit" class="btn  btn-primary" name="start2" id="start2" style="width: 250px">Edit particular question</button>
+		</div>
+	</div>
+</form>
+{% endblock %}

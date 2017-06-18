@@ -1,0 +1,37 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<form action="/cretest" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="testdet" class="cols-sm-2 control-label">PLEASE ENTER THE FOLLOWING DETAILS</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+					<input type="text" class="form-control" name="pcode" id="pcode"  placeholder="Enter unique Paper Code" required/>
+					<input type="number" class="form-control" name="maxque" id="maxque"  placeholder="Enter Max Number Of Questions You Will Create" required/>
+					<input type="number" class="form-control" name="attque" id="attque" placeholder="Enter Number Of Questions Attempted By Students" required/>
+					<input type="number" class="form-control" name="mtime" id="mtime"  placeholder="Enter Time in minutes" required/>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Description about the paper</span>
+			<textarea class="form-control" rows="5" name="descr" id="descr" placeholder="Sort Desctiption about paper max 600 letters" required>{% ifequal coun "2" %} {{query66}} {% endifequal %}{% ifequal coun "4" %} {{query66}} {% endifequal %}</textarea>
+		</div>
+		{% ifequal coun "2" %}
+			<p style="color: red">Error : Please use unique id</p>
+		{% endifequal %}
+
+		{% ifequal coun "4" %}
+			<p style="color: red">Error : Max Number Of Questions You Will Create <b>must be greater or equal to</b> Number Of Questions Attempted By Students</p>
+		{% endifequal %}
+		{% ifequal coun "5" %}
+			<p style="color: red">Error : Filling wrong number of questions</p>
+		{% endifequal %}
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Submit</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

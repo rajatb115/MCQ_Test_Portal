@@ -1,0 +1,35 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<form action="/equestion" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="testdet" class="cols-sm-2 control-label">Test Code : {{tid}}</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Enter Question number</span>
+					<input type="number" rows="4" class="form-control" name="qono" id="qono"  placeholder="Enter Question Number" required/>
+				</div>
+			</div>
+		</div>
+		{% ifequal e "2" %}
+		<div class="container">
+			<p style="color: red">Enter the question number in range 1 to {{rang}}</p>
+		</div>
+		{% endifequal %}
+		{% ifequal e "3" %}
+		<div class="container">
+			<p style="color: red">You have successfully updated the question</p>
+		</div>
+		{% endifequal %}
+		{% ifequal e "4" %}
+		<div class="container">
+			<p style="color: red">Question List is empty please go back and enter questins in paper</p>
+		</div>
+		{% endifequal %}
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Submit</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

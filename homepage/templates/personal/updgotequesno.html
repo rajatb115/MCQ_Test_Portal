@@ -1,0 +1,45 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<form action="/updatesave" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="testdet" class="cols-sm-2 control-label">Question number : {{p.q_number}}</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Question {{p.q_number}}</span>
+					<!-- <input type="text" rows="4" class="form-control" name="question" id="question"  placeholder="Question" required/> -->
+					<textarea class="form-control" rows="5" name="question" id="question" palceholder="Question?" required>{{p.q_question}}</textarea>
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 1</span>
+					<input type="text" class="form-control" name="op1" id="op1"  placeholder="Option 1" value="{{p.q_op1}}" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 2</span>
+					<input type="text" class="form-control" name="op2" id="op2"  placeholder="Option 2" value="{{p.q_op2}}" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 3</span>
+					<input type="text" class="form-control" name="op3" id="op3"  placeholder="Option 3" value="{{p.q_op3}}" required/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Option 4</span>
+					<input type="text" class="form-control" name="op4" id="op4"  placeholder="Option 4" value="{{p.q_op3}}" required/>
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>Solution</span>
+					<input type="number" class="form-control" name="ans" id="ans"  min="1" max="4" placeholder="Enter Right Solution Number(Example enter 1 if Option 1 is correct)" value="{{p.q_ans}}" required/> 
+				</div>
+
+				<!-- use java script here for data filling -->
+			</div>
+		</div>
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Update</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

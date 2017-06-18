@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<title>Test</title>
+		<meta charset="utf-8" />
+		{% load staticfiles %}
+		<link rel='stylesheet' href="{% static 'personal/css/bootstrap.min.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'page_css/style.css'%}">
+	</head>
+	<body>
+		<br>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-warning">
+							<div class="panel-heading">Paper-Code : {{testcode}}</div>
+							<div class="panel-body" class="container"><div class="col-md-9">NAME : <u>{{name}}</u></div> <div class="col-md-3"> ROLL NUMBER : <u>{{roll_no}}</u></div></div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel-warning">
+							<div class="panel-heading">RULES</div>
+							<div class="panel-body">
+								Please follow the following instructions
+								<ul>
+									<li>One marks is provided for correct attempt of the question.</li>
+									<li>There is no negative marking.</li>
+									<li>To submit the paper please press <b>Submit</b> button.</li>
+									<li>Test time :: {{timet}} mins</li>
+								</ul>
+							</div>
+							<div class="panel-footer">All The Best <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<form action="/testc" class="" method="POST">{% csrf_token %}
+			<div class="form-group ">
+				<div style="text-align: center;">
+				<!-- <input type="hidden" name="opt" id="opt" vlaue="0">                               -->
+				<button type="submit" class="btn  btn-primary" name="start" id="start">Start Test</button>
+				</div>
+			</div>
+		</form>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

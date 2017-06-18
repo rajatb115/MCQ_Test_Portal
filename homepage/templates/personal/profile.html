@@ -1,0 +1,46 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<form action="/updateiddetail" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="techid" class="cols-sm-2 control-label">Change Teacher Id</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+					<input type="text" class="form-control" name="ptechid" id="ptechid"  placeholder="Enter Current Teacher Id" required/>
+					<input type="text" class="form-control" name="ntechid" id="ntechid"  placeholder="Enter New Teacher Id" required/>
+					<input type="text" class="form-control" name="ctechid" id="ctechid"  placeholder="Confirm New Teacher Id" required/>
+				</div>
+				{% ifequal mess "2" %}
+					<p style="color: red">Your id changed successfully</p>
+				{% endifequal %}
+			</div>
+		</div>
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">change</button>
+			</div>
+		</div>
+	</form>
+	<form action="/updatepassdetail" class="" method="POST">{% csrf_token %}
+		<div class="form-group">
+			<label for="techpass" class="cols-sm-2 control-label"> Change Password </label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+					<input type="password" class="form-control" name="ptechpass" id="ptechpass"  placeholder="Enter Current Password" required/>
+					<input type="password" class="form-control" name="ntechpass" id="ntechpass"  placeholder="Enter New Password" required/>
+					<input type="password" class="form-control" name="ctechpass" id="ctechpass"  placeholder="Confirm New Password" required/>
+				</div>
+				{% ifequal mess "3" %}
+					<p style="color: red">Your Password changed successfully</p>
+				{% endifequal %}
+			</div>
+		</div>
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">change</button>
+			</div>
+		</div>
+	</form>	
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+<div class="container" class="col-md-9">	
+		<p style="color: red;"><b><i>Paper Code : <u>{{testcod}}</u></i></b></p>
+		<p><b>Number of Questions in question bank : {{p.max_ques}}</b></p>
+		<p><b>Number of Questions Student have to attempt : {{p.ques_attempt}}</b></p>
+		<p><b>Time : {{p.maxtime}}</b></p>
+		<p><b>Number of question you have entered in question Bank : {{p.ques_made}}</b></p>
+		<p><b>{% ifequal p.visible 0 %} Question bank is ready to conduct test {% endifequal %} {% ifequal p.visible 1 %}Question bank is <i>not</i> ready to conduct test {% endifequal %}</b></p>
+		<p style="color: red"><b>Description</b></p>
+		<p><i>{{pp.desc}}</i></p>
+	
+
+	<div class="container">
+		{% for o in q%}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 control-label">
+					<div class="panel-group">
+						<div class="panel panel-warning">
+							<div class="panel-heading" class="container">
+								Question {{o.q_number}}
+							</div>
+							<div class="panel-body" class="container">
+								{{o.q_question}}
+								<br>
+								<ul>
+									<li>{{o.q_op1}}</li>
+									<li>{{o.q_op2}}</li>
+									<li>{{o.q_op3}}</li>
+									<li>{{o.q_op4}}</li>
+								</ul>
+								<br>
+								Solution : Option {{o.q_ans}}
+							</div>
+							<div class="panel-footer">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

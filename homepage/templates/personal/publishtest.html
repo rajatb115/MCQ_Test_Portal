@@ -1,0 +1,53 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+
+	<form action="/publishselected" class="" method="POST">{% csrf_token %}
+		<div class="form-group ">
+			<label for="sel1">Please Select the paper code you want to publish :</label>
+  			<select class="form-control"  id="sel1" name="sel1">
+  			{% for o in p %}
+    		<option value="{{o.test_id}}">{{o.test_id}}</option>
+    		{% endfor %}
+  			</select>
+		</div>
+
+		{% ifequal messa "2" %}
+		<div class="container">
+			<p style="color: red">Paper published.</p>
+		</div>
+		{% endifequal %}
+		{% ifequal messa "4" %}
+		<div class="container">
+			<p style="color: red">Can not publish the paper because the paper is incomplete. Please edit the paper and complete it.</p>
+		</div>
+		{% endifequal %}
+		<div class="form-group ">
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="startas" id="startas" style="width: 150px"> Publish </button>
+			</div>
+		</div>
+	</form>
+
+	<form action="/publishunselected" class="" method="POST">{% csrf_token %}
+		<div class="form-group ">
+			<label for="sel1">Please Select the paper code you want to unpublish :</label>
+  			<select class="form-control"  id="sel2" name="sel2">
+  			{% for o in q %}
+    		<option value="{{o.test_id}}">{{o.test_id}}</option>
+    		{% endfor %}
+  			</select>
+		</div>
+		{% ifequal messa "3" %}
+		<div class="container">
+			<p style="color: red">Paper unpublished.</p>
+		</div>
+		{% endifequal %}
+		<div class="form-group ">
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="startas" id="startas" style="width: 150px"> Unpublish </button>
+			</div>
+		</div>
+	</form>
+
+{% endblock %}

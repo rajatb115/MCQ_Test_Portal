@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<title>Welcome {{techname}}</title>
+		<meta charset="utf-8" />
+		{% load staticfiles %}
+		<link rel='stylesheet' href="{% static 'personal/css/bootstrap.min.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'page_css/style.css'%}">
+	</head>
+	<body>
+		<br>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group">
+						<div class="panel panel-warning">
+							<div class="panel-heading" class="container">
+								Welcome <u>{{techname}}</u>  
+								<br>
+								Teacher Id : <u>{{techid}}</u>
+							</div>
+							<div class="panel-body" class="container">
+								
+								<div class="col-md-3" class="container" style="border:2px">
+									
+									<div style="text-align: center;">
+										<form action="/profile" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="profile" id="profile" style="width: 150px">Edit Profile</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div style="text-align: center;">
+										<form action="/creteststart" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="cretest" id="cretest" style="width: 150px">Create Test</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div style="text-align: center;">
+										<form action="/edittest" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Edit Test</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div style="text-align: center;">
+										<form action="/publishtest" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Publish Test</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div style="text-align: center;">
+										<form action="/reviewpaper1" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Review Paper</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div style="text-align: center;">
+										<form action="/result" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;"> 
+													<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Result</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div style="text-align: center;">
+										<form action="/logout" class="" method="POST">{% csrf_token %}
+											<div class="form-group ">
+												<div style="text-align: center;">
+													<button type="submit" class="btn  btn-primary" name="start" id="start" style="width: 150px">Logout</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+								</div>
+								
+								<div class="col-md-9" class="container">
+									{% ifequal temporary "2" %}
+									<h4 style="color: red">You have successfully created the paper<h4>
+									{% endifequal %}
+									
+									{% block content %}
+									{% endblock %}
+								</div>
+							</div>
+
+							<div class="panel-footer">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

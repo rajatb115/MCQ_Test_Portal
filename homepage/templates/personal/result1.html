@@ -1,0 +1,21 @@
+{% extends "personal/teacherlogin.html" %}
+
+{% block content %}
+	<div class="container">
+		<h4>Test Code : {{id}}</h4>
+	</div>
+	<form action="/checkstudentresult" class="" method="POST">{% csrf_token %}
+		<div class="form-group ">				
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start1" id="start1" style="width: 250px">check for perticular student</button>
+			</div>
+		</div>
+	</form>
+	<form action="/downloadcsv" class="" method="POST">{% csrf_token %}
+		<div class="form-group ">
+			<div style="text-align: center;">
+				<button type="submit" class="btn  btn-primary" name="start2" id="start2" style="width: 250px">Download Result</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}
