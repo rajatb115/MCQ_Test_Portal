@@ -1,4 +1,4 @@
 Language :: Python2
-Framework :: Django
+Framework :: Django 1.8.7
 
 It is a MCQ test conducting portal project based on python2 using django.
